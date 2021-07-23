@@ -43,7 +43,7 @@
             "defaultValue": "Standard_LRS",
             "allowedValues": [
                 "StandardSSD_LRS",
-				"Standard_LRS",
+                "Standard_LRS",
                 "Premium_LRS"
             ],
             "type": "String",
@@ -451,7 +451,7 @@
                     "properties": {
                         "publisher": "Microsoft.Compute",
                         "type": "CustomScriptExtension",
-                        "typeHandlerVersion": "1.10",
+                        "typeHandlerVersion": "1.9",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [
@@ -503,24 +503,7 @@
                 }
             ]
         },
-        {
-            "type": "Microsoft.DevTestLab/schedules",
-            "apiVersion": "2018-09-15",
-            "name": "[concat('shutdown-computevm-', parameters('virtualMachineName'))]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
-            ],
-            "properties": {
-                "status": "[parameters('autoShutdownStatus')]",
-                "taskType": "ComputeVmShutdownTask",
-                "dailyRecurrence": {
-                    "time": "[parameters('autoShutdownTime')]"
-                },
-                "timeZoneId": "[parameters('autoShutdownTimeZone')]",
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
-            }
-        },
+
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
