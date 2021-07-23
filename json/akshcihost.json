@@ -18,8 +18,6 @@
                 "Standard_E8_v3",
                 "Standard_E16_v3",
                 "Standard_E16-8_v3"
-
-   
             ],
             "type": "String"
         },
@@ -435,7 +433,7 @@
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": true
+                        "enabled": false
                     }
                 },
                 "licenseType": "[if(equals(parameters('alreadyHaveAWindowsServerLicense'), 'Yes'), 'Windows_Server', 'None')]"
