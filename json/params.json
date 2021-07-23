@@ -6,7 +6,7 @@
       "value": "AKSHCIHost001"
     },
     "virtualMachineSize": {
-      "value": "Standard_E16s_v4"
+      "value": "Standard_E8_v3"
     },
     "virtualMachineGeneration": {
       "value": "Generation 2"
@@ -15,7 +15,7 @@
       "value": "akshci.local"
     },
     "dataDiskType": {
-      "value": "StandardSSD_LRS"
+      "value": "Standard_LRS"
     },
     "dataDiskSize": {
       "value": "32"
