@@ -9,7 +9,7 @@
       "value": "Standard_E8_v3"
     },
     "virtualMachineGeneration": {
-      "value": "Generation 2"
+      "value": "Generation 1"
     },
     "domainName": {
       "value": "akshci.local"
