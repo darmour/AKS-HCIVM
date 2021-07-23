@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachineName": {
+      "value": "AKSHCIHost001"
+    },
+    "virtualMachineSize": {
+      "value": "Standard_E16s_v4"
+    },
+    "virtualMachineGeneration": {
+      "value": "Generation 2"
+    },
+    "domainName": {
+      "value": "akshci.local"
+    },
+    "dataDiskType": {
+      "value": "StandardSSD_LRS"
+    },
+    "dataDiskSize": {
+      "value": "32"
+    },
+    "adminUsername": {
+      "value": "adminuser"
+    },
+    "adminPassword": {
+      "value": ""
+    },
+    "enableDHCP": {
+      "value": "Enabled"
+    },
+    "customRdpPort": {
+      "value": "3389"
+    },
+    "autoShutdownStatus": {
+      "value": "Enabled"
+    },
+    "autoShutdownTime": {
+      "value": "22:00"
+    },
+    "autoShutdownTimeZone": {
+      "value": "UTC"
+    },
+    "alreadyHaveAWindowsServerLicense": {
+      "value": "No"
+    }
+  }
+}
