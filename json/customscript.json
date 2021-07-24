@@ -1,0 +1,100 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"virtualMachineName": {
+			"defaultValue": "AKSHCIHost001",
+			"type": "String",
+			"metadata": {
+				"description": "Keep the VM name to less than 15 characters"
+			}
+		},
+		"domainName": {
+			"defaultValue": "akshci.local",
+			"type": "String",
+			"metadata": {
+				"description": "The FQDN that will be used in the environment"
+			}
+		},
+		"adminUsername": {
+			"defaultValue": "AzureUser",
+			"type": "String"
+		},
+		"adminPassword": {
+			"type": "SecureString"
+		},
+		"enableDHCP": {
+			"defaultValue": "Enabled",
+			"allowedValues": [
+				"Enabled",
+				"Disabled"
+			],
+			"type": "String",
+			"metadata": {
+				"description": "Choose whether you wish to enable DHCP in the environment for AKS-HCI testing. If you choose Disabled, it can be enabled after deployment."
+			}
+		},
+		"customRdpPort": {
+			"defaultValue": "3389",
+			"type": "String",
+			"metadata": {
+				"description": "If you wish to use a different port to RDP into the VM (between 0 and 65535), change it here, otherwise, leave the default."
+			}
+		}
+	},
+
+	"variables": {
+
+		"dscUri": "https://github.com/Azure/aks-hci/raw/main/eval/dsc/akshcihost.zip",
+		"artifactsLocation": "https://raw.githubusercontent.com/darmour/AKS-HCIVM/main/",
+		"randomGUID": "[substring(uniqueString(subscription().subscriptionId, resourceGroup().id, parameters('virtualMachineName')),0,6)]",
+
+		"environment": "Workgroup",
+
+		"addressPrefix": "10.0.0.0/16",
+		"privateIPAddress": "10.0.0.4",
+		"subnetName": "AKSHCILabSubnet",
+		"subnetPrefix": "10.0.0.0/24"
+
+	},
+
+	"resources": [{
+		"type": "Microsoft.Compute/virtualMachines",
+		"apiVersion": "2020-06-01",
+		"name": "[parameters('virtualMachineName')]",
+		"location": "[resourceGroup().location]",
+		"resources": [{
+			"type": "extensions",
+			"apiVersion": "2018-06-01",
+			"name": "InstallWAC",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [
+				"[parameters('virtualMachineName')]"
+			],
+			"properties": {
+				"publisher": "Microsoft.Compute",
+				"type": "CustomScriptExtension",
+				"typeHandlerVersion": "1.9",
+				"autoUpgradeMinorVersion": true,
+				"settings": {
+					"fileUris": [
+						"[uri(variables('artifactsLocation'), concat('scripts/installWac.ps1'))]"
+					]
+				},
+				"protectedSettings": {
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File installWac.ps1', ' -userName ', parameters('adminUsername'))]"
+				}
+			}
+		}]
+	}],
+	"outputs": {
+		"adminUsername": {
+			"type": "String",
+			"value": "[parameters('adminUsername')]"
+		},
+		"rdpPort": {
+			"type": "String",
+			"value": "[parameters('customRdpPort')]"
+		}
+	}
+}
