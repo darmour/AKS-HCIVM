@@ -44,24 +44,18 @@
 	},
 
 	"variables": {
-		"dataDisksCount": 8,
+
 		"dscUri": "https://github.com/Azure/aks-hci/raw/main/eval/dsc/akshcihost.zip",
 		"artifactsLocation": "https://raw.githubusercontent.com/darmour/AKS-HCIVM/main/",
 		"randomGUID": "[substring(uniqueString(subscription().subscriptionId, resourceGroup().id, parameters('virtualMachineName')),0,6)]",
-		"dnsNameForPublicIP": "[toLower(concat(parameters('virtualMachineName'), variables('randomGUID')))]",
+
 		"environment": "Workgroup",
-		"virtualNetworkName": "AKSHCILabvNet",
-		"networkInterfaceName": "AKSHCILabNIC1",
-		"networkSecurityGroupName": "AKSHCILabNSG",
+
 		"addressPrefix": "10.0.0.0/16",
 		"privateIPAddress": "10.0.0.4",
 		"subnetName": "AKSHCILabSubnet",
-		"subnetPrefix": "10.0.0.0/24",
-		"publicIpAddressName": "AKSHCILabPubIP",
-		"publicIpAddressType": "Dynamic",
-		"publicIpAddressSku": "Basic",
-		"vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-		"subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]"
+		"subnetPrefix": "10.0.0.0/24"
+
 	},
 
 	"resources": [{
