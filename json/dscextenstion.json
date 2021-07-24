@@ -110,10 +110,6 @@
 		"rdpPort": {
 			"type": "String",
 			"value": "[parameters('customRdpPort')]"
-		},
-		"fqdn": {
-			"type": "String",
-			"value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))).dnsSettings.fqdn]"
 		}
 	}
 }
