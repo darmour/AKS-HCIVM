@@ -73,7 +73,7 @@
 			"type": "SecureString"
 		},
 		"networkSuffix": {
-			"default": "1a",
+			"defaultValue": "1a",
 			"type": "String"
 		},
 		"enableDHCP": {
