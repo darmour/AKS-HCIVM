@@ -72,6 +72,10 @@
 		"adminPassword": {
 			"type": "SecureString"
 		},
+		"networkSuffix": {
+			"default": "1a",
+			"type": "String"
+		},
 		"enableDHCP": {
 			"defaultValue": "Enabled",
 			"allowedValues": [
@@ -262,14 +266,14 @@
 		"randomGUID": "[substring(uniqueString(subscription().subscriptionId, resourceGroup().id, parameters('virtualMachineName')),0,6)]",
 		"dnsNameForPublicIP": "[toLower(concat(parameters('virtualMachineName'), variables('randomGUID')))]",
 		"environment": "Workgroup",
-		"virtualNetworkName": "AKSHCILabvNet",
-		"networkInterfaceName": "AKSHCILabNIC1",
-		"networkSecurityGroupName": "AKSHCILabNSG",
+		"virtualNetworkName": "[concat(('AKSHCILabvNet'),parameters{'NetworkSuffix'))]",
+		"networkInterfaceName": "[concat(('AKSHCILabNIC1'),parameters{'NetworkSuffix'))]",
+		"networkSecurityGroupName": "[concat(('AKSHCILabNSG'),parameters{'NetworkSuffix'))]",
 		"addressPrefix": "10.0.0.0/16",
 		"privateIPAddress": "10.0.0.4",
 		"subnetName": "AKSHCILabSubnet",
 		"subnetPrefix": "10.0.0.0/24",
-		"publicIpAddressName": "AKSHCILabPubIP",
+		"publicIpAddressName": "[concat(('AKSHCILabPubIP'),parameters{'NetworkSuffix'))]",
 		"publicIpAddressType": "Dynamic",
 		"publicIpAddressSku": "Basic",
 		"vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
