@@ -1,6 +1,6 @@
 # AKS-HCIVM
 <H1>Overview</H1>
-This document outlines how to setup AKS-HCI on an Azure VM:<BR>
+This document outlines how to setup a VM in Azure before setting up AKS-HCI:<BR>
 <a href="https://github.com/Azure/aks-hci/blob/main/eval/steps/1_AKSHCI_Azure.md#deploying-the-azure-vm">https://github.com/Azure/aks-hci/blob/main/eval/steps/1_AKSHCI_Azure.md#deploying-the-azure-vm</a><BR>
 <P><P>
 This will not work on an Azure Stack Hub VM because of differences in API versions, VM size availability, and Azure Service availability. <P>
