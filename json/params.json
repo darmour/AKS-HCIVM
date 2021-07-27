@@ -26,6 +26,9 @@
     "adminPassword": {
       "value": ""
     },
+    "networkSuffix": {
+      "value": "1a"
+    },
     "enableDHCP": {
       "value": "Enabled"
     },
