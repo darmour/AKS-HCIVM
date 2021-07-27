@@ -10,7 +10,7 @@ The following instructions are for setting up and AKS-HCI cluster on a VM on Azu
 You can download the templates here: <BR>
 <a href="https://github.com/darmour/AKS-HCIVM/tree/main/json">https://github.com/darmour/AKS-HCIVM/tree/main/json</a><BR>
 <P><P>
-The orginal template for deploying the VM in Azure uses the Azure DevTest Labs service to restart the VM.  Since this service is not available in Azure Stack Hub, the template was split into three templates and you will manually reboot the VM between running each template. Additionally, the DSC script uses Azure Root Hints for DNS which will cause the script to fail in its final steps.  Rather than forking the repo, I will provide instructions to manually at a DNS forwarder before re-running the DSC script.
+The orginal template for deploying the VM in Azure uses the Azure DevTest Labs service to restart the VM.  Since this service is not available in Azure Stack Hub, the template was split into three templates and you will manually reboot the VM between running each template. Additionally, the DSC script uses Azure Root Hints for DNS which will cause the script to fail in Azure Stack Hub its final steps.  Rather than forking the repo, I will provide instructions to manually add a DNS forwarder allowing the DSC script to complete.
 
 <H1>Deploying the VM</H1>
 The easiest way to deploy the templates is to use Template Deployment in the Marketplace.
